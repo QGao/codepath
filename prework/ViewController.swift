@@ -8,17 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, SettingsDelegate {
 
     @IBOutlet weak var tiplabel: UILabel!
     @IBOutlet weak var totallabel: UILabel!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var percentages: UISegmentedControl!
+    var extraTips : Double = 0.0
+    
     
     @IBAction func calculate(_ sender: AnyObject) {
+        calculateAll()
+    }
+    
+    func calculateAll(){
         let tipPercentages = [0.18, 0.2, 0.25]
         let bill = Double(billField.text!) ?? 0
-        let tip = bill * tipPercentages[percentages.selectedSegmentIndex]
+        let tip = bill * tipPercentages[percentages.selectedSegmentIndex] + extraTips
         let total = tip + bill
         tiplabel.text = String(format:"$%.2f",tip)
         totallabel.text = String(format:"$%.2f",total)
@@ -37,6 +43,19 @@ class ViewController: UIViewController {
 
     @IBAction func onTap(_ sender: AnyObject) {
         view.endEditing(true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "settingsSague" {
+            if let destination = segue.destination as? SettingsViewController {
+                destination.delegate = self
+            }
+        }
+    }
+    
+    func setExtra(extra: Double) {
+        extraTips = extra
+        calculateAll()
     }
 
 }

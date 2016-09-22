@@ -51,7 +51,7 @@
                                 <frame key="frameInset" minX="61" minY="379" width="277" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="15%"/>
+                                    <segment title="18%"/>
                                     <segment title="20%"/>
                                     <segment title="25%"/>
                                 </segments>
@@ -86,7 +86,7 @@
                     <navigationItem key="navigationItem" title="Tip Calculator" id="XBQ-0M-jJC">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="R9m-rL-71Z">
                             <connections>
-                                <segue destination="PGs-hB-FVJ" kind="push" id="G6w-rt-2Zx"/>
+                                <segue destination="PGs-hB-FVJ" kind="push" identifier="settingsSague" id="G6w-rt-2Zx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -113,13 +113,45 @@
                     <view key="view" contentMode="scaleToFill" id="GYk-gX-839">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$0.00" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="Od6-TG-i9c">
+                                <frame key="frameInset" minX="139" minY="170" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="updateExtra:" destination="PGs-hB-FVJ" eventType="valueChanged" id="8Se-lo-1eM"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Extra Tips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AxU-Sv-XSk">
+                                <frame key="frameInset" minX="143" minY="111" width="89" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.00" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="qOW-Pe-4tk">
+                                <frame key="frameInset" minX="139" minY="170" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="updateExtra:" destination="PGs-hB-FVJ" eventType="valueChanged" id="2fe-jv-0hA"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="n1G-s2-lae"/>
+                    <connections>
+                        <outlet property="extra" destination="qOW-Pe-4tk" id="cY4-Z9-g4x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sIc-ry-VYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1069" y="-36"/>
+            <point key="canvasLocation" x="1068.5" y="-36.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wNy-EH-nFa">

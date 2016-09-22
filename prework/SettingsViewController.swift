@@ -8,19 +8,37 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+protocol SettingsDelegate {
+    func setExtra(extra: Double)
+}
 
+class SettingsViewController: UIViewController {
+    var delegate: SettingsDelegate?
+    @IBOutlet weak var extra: UITextField!
+    var extraTips : Double = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setExtra()
+    }
+    
+    func setExtra() {
+        let extraTips = Double(extra.text!) ?? 0
+        delegate?.setExtra(extra: extraTips)
+    }
+    
+    @IBAction func sendDataBack(_ sender: AnyObject) {
+        setExtra()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
