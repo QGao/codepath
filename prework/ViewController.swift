@@ -15,7 +15,7 @@ class ViewController: UIViewController, SettingsDelegate {
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var percentages: UISegmentedControl!
     var extraTips : Double = 0.0
-    
+    let billFieldKey: String = "KEY_4_BILL"
     
     @IBAction func calculate(_ sender: AnyObject) {
         calculateAll()
@@ -30,6 +30,27 @@ class ViewController: UIViewController, SettingsDelegate {
         totallabel.text = String(format:"$%.2f",total)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadLast()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveLast()
+    }
+    
+    func loadLast(){
+        let defaults = UserDefaults.standard
+        let bill = defaults.object(forKey: billFieldKey)
+        billField.text = bill as! String?
+    }
+    
+    func saveLast(){
+        let defaults = UserDefaults.standard
+        defaults.set(billField.text, forKey: billFieldKey)
+        defaults.synchronize()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
