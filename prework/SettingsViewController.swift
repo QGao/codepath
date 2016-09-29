@@ -13,6 +13,7 @@ protocol SettingsDelegate {
 }
 
 class SettingsViewController: UIViewController {
+    let extraKey: String = "KEY_4_EXTRA"
     var delegate: SettingsDelegate?
     @IBOutlet weak var extra: UITextField!
     var extraTips : Double = 0.0
@@ -21,9 +22,15 @@ class SettingsViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadLast()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         setExtra()
+        saveLast()
     }
     
     func setExtra() {
@@ -39,6 +46,20 @@ class SettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func loadLast(){
+        let defaults = UserDefaults.standard
+        extraTips = defaults.double(forKey: extraKey)
+        extra.text = String(format: "%.2f",extraTips)
+    }
+    
+    func saveLast(){
+        let defaults = UserDefaults.standard
+        defaults.set(extra.text, forKey: extraKey)
+        defaults.synchronize()
+    }
+
 
     /*
     // MARK: - Navigation

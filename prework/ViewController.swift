@@ -33,6 +33,7 @@ class ViewController: UIViewController, SettingsDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadLast()
+        calculateAll()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
