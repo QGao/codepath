@@ -34,13 +34,9 @@ class SettingsViewController: UIViewController {
     }
     
     func setExtra() {
-        let extraTips = Double(extra.text!) ?? 0
         delegate?.setExtra(extra: extraTips)
     }
     
-    @IBAction func sendDataBack(_ sender: AnyObject) {
-        setExtra()
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

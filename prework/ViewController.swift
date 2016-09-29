@@ -16,6 +16,7 @@ class ViewController: UIViewController, SettingsDelegate {
     @IBOutlet weak var percentages: UISegmentedControl!
     var extraTips : Double = 0.0
     let billFieldKey: String = "KEY_4_BILL"
+    let extraKey: String = "KEY_4_EXTRA"
     
     @IBAction func calculate(_ sender: AnyObject) {
         calculateAll()
@@ -45,6 +46,7 @@ class ViewController: UIViewController, SettingsDelegate {
         let defaults = UserDefaults.standard
         let bill = defaults.object(forKey: billFieldKey)
         billField.text = bill as! String?
+        extraTips = defaults.double(forKey: extraKey)
     }
     
     func saveLast(){
